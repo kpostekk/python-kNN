@@ -3,11 +3,16 @@ import matplotlib.pyplot as plt
 from tkinter import Tk, Button
 
 
-def load_dataframes():
-    df: DataFrame = read_csv('data.csv', header=None)
+def load_discrete_df(path):
+    df: DataFrame = read_csv(path, header=None)
     df['vector'] = [col for col in df.iloc[:, :-1].values]
     df.drop(list(range(df.columns.size - 2)), inplace=True, axis=1)
     df.columns = ['class', 'vector']
+    return df
+
+
+def load_dataframes():
+    df: DataFrame = load_discrete_df('data.csv')
 
     train_df = DataFrame(columns=df.columns, data=None)
     test_df = DataFrame(columns=df.columns, data=None)
@@ -64,26 +69,6 @@ def test_find_neighbors(k, train, test):
     return passed / len(test)
 
 
-def init_gui():
-    window = Tk()
-    window.title('KNN')
-    window.geometry('600x400')
-
-    default_option_button = Button(command=default_config)
-    default_option_button['text'] = 'Run with default options'
-    default_option_button.pack()
-
-    select_test_file_button = Button()
-    select_test_file_button['text'] = 'Select test file'
-    select_test_file_button.pack()
-
-    insert_own_input_button = Button()
-    insert_own_input_button['text'] = 'Insert own input'
-    insert_own_input_button.pack()
-
-    window.mainloop()
-
-
 def default_config():
     train_df, test_df = load_dataframes()
     dfm = DataFrame(
@@ -96,4 +81,4 @@ def default_config():
 
 
 if __name__ == '__main__':
-    init_gui()
+    default_config()
