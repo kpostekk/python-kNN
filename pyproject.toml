@@ -2,11 +2,10 @@
 name = "knn"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
-readme = "README.md"
+authors = ["Krystian Postek <kpostekk@pjwstk.edu.pl>"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.10"
 pandas = "*"
 matplotlib = "*"
 click = "*"
