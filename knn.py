@@ -1,6 +1,5 @@
 from pandas import read_csv, DataFrame, concat
 import matplotlib.pyplot as plt
-from tkinter import Tk, Button
 
 
 def load_discrete_df(path):
